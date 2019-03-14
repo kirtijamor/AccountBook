@@ -74,11 +74,7 @@ export class ArInvoicesComponent implements OnInit {
   // }
 
   getArInvoices() {
-    // this.arInvoicesService.arInvoices$.subscribe((data: ArInvoice[]) => {
-    //   this.arInvoices = data;
-    //   console.log(data);
-    // });
-    this.arInvoicesService.getArInvoices().subscribe((data: ArInvoice[]) => {
+    this.arInvoicesService.arInvoices$.subscribe((data: ArInvoice[]) => {
       this.arInvoices = data;
       console.log(data);
     });
@@ -91,7 +87,7 @@ export class ArInvoicesComponent implements OnInit {
   //   // this line is to refresh view and detect changes for updating table view
   // }
 
-  // deleteArInvoice(arInvoice: ArInvoices) {
+  // deleteArInvoice(arInvoice: ArInvoice) {
   //   this.arInvoicesService.deleteArInvoice(arInvoice.invoiceNo)
   //   .subscribe(data => {this.arInvoices.filter(u => u !== arInvoice);
   //   });

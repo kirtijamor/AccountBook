@@ -1,3 +1,5 @@
+import { ArInvoicesBackendService } from './ar-invoices-backend.service';
+import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -81,13 +83,16 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+// tslint:disable-next-line: deprecation
+    HttpModule
     // PopupModule.forRoot()
   ],
   entryComponents: [NewArComponent, NewApComponent],
   providers: [
     ArInvoicesService,
-    ApBillsService // to make service available to all components
+    ApBillsService,
+    ArInvoicesBackendService// to make service available to all components
   ],
   bootstrap: [AppComponent]
 })

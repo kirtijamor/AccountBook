@@ -4,7 +4,9 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 // https://blog.angular-university.io/how-to-build-angular2-apps-using-rxjs-observable-data-services-pitfalls-to-avoid/
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ArInvoicesService {
 
   public arInvoices: ArInvoice[] = [];
@@ -19,10 +21,10 @@ export class ArInvoicesService {
   }
 
   loadArInvoices() {
-    this.arInvoicesBackendService.getArInvoice().subscribe( res => {
-        this._arInvoices.next(this.arInvoices);
-      }
-    );
+    this.arInvoicesBackendService.getArInvoice().subscribe(res => {
+      console.log(res);
+      this._arInvoices.next(res);
+    });
 
   }// loadArInvoices()
 
