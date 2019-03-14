@@ -1,0 +1,103 @@
+<div class="div_header">
+  <span class="page-heading">RECEIVABLE BILLS</span>
+  <p class="btn-options">
+    <button mat-raised-button (click)="openDialog()">New Transaction</button>
+    &nbsp;
+    <button mat-raised-button [matMenuTriggerFor]="menu">Actions</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>See Payments</button>
+      <button mat-menu-item>Make Payments</button>
+    </mat-menu>
+  </p>
+</div>
+<hr>
+<!-- <div class="filter">
+  <mat-form-field>
+    <input matInput (keyup)="invoiceNoFilter($event.target.value)" placeholder="Invoice No.">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput (keyup)="invoiceDateFilter($event.target.value)" placeholder="Invoice Date">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput (keyup)="clientFilter($event.target.value)" placeholder="Client">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput (keyup)="amountFilter($event.target.value)" placeholder="Amount">
+  </mat-form-field>
+
+
+</div> -->
+
+<mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <!--InvoiceNo Column -->
+  <ng-container matColumnDef="invoiceNo">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Invoice No. </mat-header-cell>
+    <mat-cell *matCellDef="let arInvoices"> {{arInvoices.invoiceNo}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+  </ng-container>
+
+  <!-- Invoice Date Column -->
+  <ng-container matColumnDef="invoiceDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Invoice Date </mat-header-cell>
+    <mat-cell *matCellDef="let arInvoices"> {{arInvoices.invoiceDate}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+  </ng-container>
+
+  <!-- Client Column -->
+  <ng-container matColumnDef="client">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Client </mat-header-cell>
+    <mat-cell *matCellDef="let arInvoices"> {{arInvoices.client}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+  </ng-container>
+
+  <!-- Site Column Column -->
+  <ng-container matColumnDef="billTo">
+    <mat-header-cell *matHeaderCellDef> Site </mat-header-cell>
+    <mat-cell *matCellDef="let arInvoices"> {{arInvoices.billTo}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+  </ng-container>
+
+  <!-- Amount Column -->
+  <ng-container matColumnDef="amount">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+    <mat-cell *matCellDef="let arInvoices"> {{arInvoices.amount | currency}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> {{getTotalAmount() | currency}} </td> -->
+  </ng-container>
+
+  <!-- Due In Column -->
+  <ng-container matColumnDef="dueDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Due Date</mat-header-cell>
+    <mat-cell *matCellDef="let arInvoices"> {{arInvoices.dueDate}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> {{getTotaldueDate() | currency}} </td> -->
+  </ng-container>
+
+  <!-- entryComplete flag Column -->
+  <!-- <ng-container matColumnDef="entryComplete">
+    <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+    <mat-cell *matCellDef="let arInvoices">
+      {{arInvoices.entryComplete}}
+      <mat-checkbox [checked]="arInvoices.entryComplete"></mat-checkbox>
+    </mat-cell>
+    <td mat-footer-cell *matFooterCellDef> {{getTotalAmount() | currency}} </td>
+  </ng-container> -->
+
+  <!-- Delete row column -->
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let arInvoices">
+      <button mat-icon-button (click)="deleteArInvoice(arInvoices)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns ; sticky: true"></mat-header-row>
+  <mat-row (click)="getInvoice(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>>
+  <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr> -->
+</mat-table>
+
+<mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" class="paginator">
+</mat-paginator>
+
+<br>
+<br>

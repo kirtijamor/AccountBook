@@ -1,0 +1,72 @@
+<div class="div_header">
+  <span class="page-heading">PAYABLE BILLS</span>
+  <p class="btn-options">
+    <button mat-raised-button (click)="openDialog()">New AP Bills</button>
+    &nbsp;
+    <button mat-raised-button [matMenuTriggerFor]="menu">Actions</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>See Payments</button>
+      <button mat-menu-item>Make Payments</button>
+    </mat-menu>
+  </p>
+</div>
+
+<mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <!--Bill No. Column -->
+  <ng-container matColumnDef="billNo">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Bill No. </mat-header-cell>
+    <mat-cell *matCellDef="let apBills"> {{apBills.billNo}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+  </ng-container>
+
+  <!-- Bill Date Column -->
+  <ng-container matColumnDef="billDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Billing Date </mat-header-cell>
+    <mat-cell *matCellDef="let apBills"> {{apBills.billDate}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+  </ng-container>
+
+  <!-- Vendor Column -->
+  <ng-container matColumnDef="vendor">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Vendor </mat-header-cell>
+    <mat-cell *matCellDef="let apBills"> {{apBills.vendor}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+  </ng-container>
+
+  <!-- Amount Column -->
+  <ng-container matColumnDef="amount">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+    <mat-cell *matCellDef="let apBills"> {{apBills.amount | currency}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> {{getTotalAmount() | currency}} </td> -->
+  </ng-container>
+
+  <!-- Due In column -->
+  <ng-container matColumnDef="dueDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Due Date</mat-header-cell>
+    <mat-cell *matCellDef="let apBills">{{apBills.dueDate}}</mat-cell>
+  </ng-container>
+
+  <!-- isComplete flag Column -->
+  <!-- <ng-container matColumnDef="entryComplete">
+    <mat-header-cell *matHeaderCellDef> Complete </mat-header-cell>
+    <mat-cell *matCellDef="let apBills">
+       {{apBills.entryComplete}}
+      <mat-checkbox [checked]="apBills.entryComplete"></mat-checkbox>
+    </mat-cell>
+     <td mat-footer-cell *matFooterCellDef> {{getTotalAmount() | currency}} </td>
+  </ng-container> -->
+
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let apBills">
+      <button mat-icon-button (click)="deleteApBill(apBills)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns ; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>>
+  <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr> -->
+</mat-table>

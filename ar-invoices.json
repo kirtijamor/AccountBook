@@ -1,0 +1,48 @@
+{
+  "arInvoices": [
+    {
+      "id": 1,
+      "invoiceNo": 1,
+      "invoiceDate": "22/02/2019",
+      "client": "Ritesh",
+      "amount": 10000,
+      "dueDate": "22/03/2019",
+      "billTo": "Mumbai, India"
+    },
+    {
+      "id": 2,
+      "invoiceNo": 2,
+      "invoiceDate": "22/02/2019",
+      "client": "Pratik",
+      "amount": 3000,
+      "dueDate": "22/03/2019",
+      "billTo": "Mumbai, India"
+    },
+    {
+      "id": 3,
+      "invoiceNo": 3,
+      "invoiceDate": "23/02/2019",
+      "client": "Hardik",
+      "amount": 2500,
+      "dueDate": "23/04/2019",
+      "billTo": "Mumbai, India"
+    },
+    {
+      "id": 4,
+      "invoiceNo": 4,
+      "invoiceDate": "26/02/2019",
+      "client": "Kirtija",
+      "amount": 10000,
+      "dueDate": "28/03/2019",
+      "billTo": "Chicago, Illinois"
+    },
+    {
+      "invoiceNo": 5,
+      "invoiceDate": "27/02/2019",
+      "client": "Saurabh",
+      "amount": 2000,
+      "dueDate": "27/04/2019",
+      "billTo": "Mumbai, India"
+    }
+  ]
+}

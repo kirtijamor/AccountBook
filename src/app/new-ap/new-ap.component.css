@@ -1,0 +1,30 @@
+.buttons {
+  text-align: center;
+
+}
+.form-buttons{
+  background-color: #E5F2FE;
+}
+div{
+  text-align: center;
+}
+
+.dialogTitle{
+  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  background-color: #3f51b5;
+  padding: 16px;
+  margin: 0 -24px;
+  color: aliceblue;
+  font-size: 26px;
+  text-align: center;
+}
+.mat-dialog-content{
+  margin: 0px;
+  /* padding: 24px; */
+  overflow: unset;
+}
+.mat-dialog-actions{
+  flex-wrap: nowrap;
+  /* padding-left: 18px; */
+}
+

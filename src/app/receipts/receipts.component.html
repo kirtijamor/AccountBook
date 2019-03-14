@@ -1,0 +1,62 @@
+<div class="div_header">
+  <span class="page-heading">RECEIPTS</span>
+</div>
+<mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!--InvoiceNo Column -->
+  <ng-container matColumnDef="invoiceNo">
+    <mat-header-cell *matHeaderCellDef> Invoice No. </mat-header-cell>
+    <mat-cell *matCellDef="let transaction"> {{transaction.invoiceNo}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+  </ng-container>
+
+  <!-- Invoice Date Column -->
+  <ng-container matColumnDef="invoiceDate">
+    <mat-header-cell *matHeaderCellDef> Invoice Date </mat-header-cell>
+    <mat-cell *matCellDef="let transaction"> {{transaction.invoiceDate}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+  </ng-container>
+
+  <!-- Client Column -->
+  <ng-container matColumnDef="client">
+    <mat-header-cell *matHeaderCellDef> Client </mat-header-cell>
+    <mat-cell *matCellDef="let transaction"> {{transaction.client}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+  </ng-container>
+
+  <!-- Site Column Column -->
+  <ng-container matColumnDef="billTo">
+    <mat-header-cell *matHeaderCellDef> Site </mat-header-cell>
+    <mat-cell *matCellDef="let transaction"> {{transaction.billTo}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+  </ng-container>
+
+  <!-- Amount Column -->
+  <ng-container matColumnDef="amount">
+    <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+    <mat-cell *matCellDef="let transaction"> {{transaction.amount | currency}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> {{getTotalAmount() | currency}} </td> -->
+  </ng-container>
+
+  <!-- Due In Column -->
+  <ng-container matColumnDef="dueDate">
+    <mat-header-cell *matHeaderCellDef> Due Date</mat-header-cell>
+    <mat-cell *matCellDef="let transaction"> {{transaction.dueDate}} </mat-cell>
+    <!-- <td mat-footer-cell *matFooterCellDef> {{getTotaldueDate() | currency}} </td> -->
+  </ng-container>
+
+  <!-- Generate Receipt Column -->
+  <ng-container matColumnDef="generate">
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+    <mat-cell *matCellDef="let transaction">
+      <button mat-raised-button class="btn-generate-receipt" [routerLink]="['../generate-receipt']">Generate Receipt</button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns ; sticky: true"></mat-header-row>
+  <mat-row (click)="getInvoice(row)" *matRowDef="let row; columns: displayedColumns;"
+    [ngClass]="{'highlight': row.highlighted}"></mat-row>>
+  <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr> -->
+</mat-table>
+
+<br>
+<br>
