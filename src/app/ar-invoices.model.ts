@@ -1,4 +1,4 @@
-export class ArInvoice {
+export class ArInvoices {
   id: number;
   invoiceNo: number;
   invoiceDate: string;

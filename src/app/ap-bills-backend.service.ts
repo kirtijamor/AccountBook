@@ -1,18 +1,22 @@
-import { Observable } from 'rxjs';
-import { ArInvoice} from './ar-invoices.model';
+import { ApBills } from './ap-bills.model';
+import { share } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApBillsBackendService {
-
-  url = 'http://localhost:3200';
+  url = 'http://localhost:3000';
 
   constructor(public httpClient: HttpClient) { }
 
-  getArInvoices() {
-    return this.httpClient.get(`${this.url}/arInvoices`);
+  getApBills(): Observable<ApBills[]> {
+    return this.httpClient.get<ApBills[]>(`${this.url}/apBills`).pipe(share());
+  }
+
+  deleteApBill(apBill: ApBills) {
+    return this.httpClient.delete(`${this.url}/apBills/${apBill.id}`).pipe(share());
   }
 }

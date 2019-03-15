@@ -27,12 +27,13 @@ export class ApBillsComponent implements OnInit {
   amount: number;
   dueDate: string;
 
-  dataSource = new ApBillsDataSource(this.apBillsService);
+
 
   constructor(public vendorDialog: MatDialog, public apBillsService: ApBillsService) { }
 
   displayedColumns: string[] = ['billNo', 'billDate', 'vendor', 'amount', 'dueDate', 'delete'];
   @ViewChild(MatSort) sort: MatSort;
+  dataSource = new ApBillsDataSource(this.apBillsService);
 
   openDialog(): void {
     const dialogRef = this.vendorDialog.open(NewApComponent, {
@@ -50,15 +51,15 @@ export class ApBillsComponent implements OnInit {
   }// to close openDialog()
 
   public getApBills() {
-    this.apBillsService.getApBills().subscribe((data: ApBills[]) => {
+    this.apBillsService.apBills$.subscribe((data: ApBills[]) => {
       this.apBills = data;
       console.log(data);
     });
   }
 
   deleteApBill(apBill: ApBills) {
-    this.apBillsService.deleteApBill(apBill.id).subscribe(data => {
-      this.apBills.filter(u => u !== apBill);
+    this.apBillsService.deleteApBill(apBill).subscribe(data => {
+      this.apBills = data;
     });
   }
 

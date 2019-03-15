@@ -1,4 +1,4 @@
-import { ArInvoice } from './../ar-invoices.model';
+import { ArInvoices } from './../ar-invoices.model';
 import { ArInvoicesService } from './../ar-invoices.service';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -6,7 +6,6 @@ import { MatTableDataSource, MatDialog, MatSort, MatPaginator } from '@angular/m
 import { NewArComponent } from '../new-ar/new-ar.component';
 import { ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
-// import 'rxjs/add/observable/of';
 import { DataSource } from '@angular/cdk/collections';
 
 export interface CustomerDialogData {
@@ -26,7 +25,7 @@ export class ArInvoicesComponent implements OnInit {
 
   constructor(public customerDialog: MatDialog, private arInvoicesService: ArInvoicesService) { }
 
-  arInvoices: ArInvoice[];
+  arInvoices: ArInvoices[];
   client: string;
   amount: number;
   dueDate: string;
@@ -56,7 +55,6 @@ export class ArInvoicesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The transaction has been recorded!');
       this.client = result;
-      // console.log(`${result}`);
     });
   }// openDialog()
 
@@ -74,25 +72,18 @@ export class ArInvoicesComponent implements OnInit {
   // }
 
   getArInvoices() {
-    this.arInvoicesService.arInvoices$.subscribe((data: ArInvoice[]) => {
+    this.arInvoicesService.arInvoices$.subscribe((data: ArInvoices[]) => {
       this.arInvoices = data;
       console.log(data, 'data');
     });
 
-  }
+  }// getArInvoices()
 
-  // removeAt(i) {
-  //   this.dataSource.splice(i, 1);
-  //   this.dataSource = JSON.parse(JSON.stringify(this.dataSource));
-  //   // this line is to refresh view and detect changes for updating table view
-  // }
-
-  deleteArInvoice(arInvoice: ArInvoice) {
+  deleteArInvoice(arInvoice: ArInvoices) {
     this.arInvoicesService.deleteArInovices(arInvoice)
     .subscribe(data => {
       this.arInvoices = data;
     });
-    // this.getArInvoices();
   }
 
   ngOnInit() {
@@ -105,7 +96,7 @@ export class ArInvoicesDataSource extends DataSource<any> {
   constructor(private arInvoicesService: ArInvoicesService) {
     super(); // call the parent constructor or to call func on a parent object
   }
-  connect(): Observable<ArInvoice[]> {
+  connect(): Observable<ArInvoices[]> {
     return this.arInvoicesService.getArInvoices();
   }
   disconnect() { }

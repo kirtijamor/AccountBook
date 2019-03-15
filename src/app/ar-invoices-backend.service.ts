@@ -1,7 +1,7 @@
+import { ArInvoices } from './ar-invoices.model';
 import { share } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ArInvoice } from './ar-invoices.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class ArInvoicesBackendService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getArInvoice(): Observable<ArInvoice[]> {
-    return this.httpClient.get<ArInvoice[]>(`${this.url}/arInvoices`).pipe(share());
+  getArInvoices(): Observable<ArInvoices[]> {
+    return this.httpClient.get<ArInvoices[]>(`${this.url}/arInvoices`).pipe(share());
   }
 
   // Takes a parameter of ArInvoice type & sends it to server
@@ -23,7 +23,7 @@ export class ArInvoicesBackendService {
   // updateArInvoice(arInvoice: ArInvoice) {
   //   return this.httpClient.put(`${this.url}/arInvoices/${arInvoice.id}`, arInvoice);
   // }
-  deleteArInvoice(arInvoice: ArInvoice) {
+  deleteArInvoice(arInvoice: ArInvoices) {
     return this.httpClient.delete(`${this.url}/arInvoices/${arInvoice.id}`).pipe(share());
   }
 

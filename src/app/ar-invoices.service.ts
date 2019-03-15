@@ -1,5 +1,5 @@
 import { ArInvoicesBackendService } from './ar-invoices-backend.service';
-import { ArInvoice } from './ar-invoices.model';
+import { ArInvoices } from './ar-invoices.model';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
@@ -13,15 +13,15 @@ export class ArInvoicesService {
   url = 'http://localhost:3200';
 
   // tslint:disable-next-line:variable-name
-  private _arInvoices: BehaviorSubject<ArInvoice[]> = new BehaviorSubject([]);
-  public readonly arInvoices$: Observable<ArInvoice[]> = this._arInvoices.asObservable();
+  private _arInvoices: BehaviorSubject<ArInvoices[]> = new BehaviorSubject([]);
+  public readonly arInvoices$: Observable<ArInvoices[]> = this._arInvoices.asObservable();
 
   constructor(public arInvoicesBackendService: ArInvoicesBackendService) {
     this.loadArInvoices();
   }
 
   loadArInvoices() {
-    this.arInvoicesBackendService.getArInvoice().subscribe(res => {
+    this.arInvoicesBackendService.getArInvoices().subscribe(res => {
       // console.log(res);
       this._arInvoices.next(res);
     });
@@ -32,22 +32,17 @@ export class ArInvoicesService {
     return this._arInvoices.asObservable();
   }// getArInvoices()
 
-  deleteArInovices(arInvoice: ArInvoice): Observable<ArInvoice[]> {
+  deleteArInovices(arInvoice: ArInvoices): Observable<ArInvoices[]> {
     const obs: Observable<any> = this.arInvoicesBackendService.deleteArInvoice(arInvoice);
 
     obs.subscribe(res => {
-      console.log(res , 'res');
+      const invoices: ArInvoices[] = this._arInvoices.getValue();
+      const index = invoices.findIndex((deleted: ArInvoices) => deleted.id === arInvoice.id);
 
-      const invoices: ArInvoice[] = this._arInvoices.getValue();
-      console.log(invoices , 'invoices');
-
-      const index = invoices.findIndex((deleted: ArInvoice) => deleted.id === arInvoice.id);
-      console.log(index, 'index');
       invoices.splice(index);
       this._arInvoices.next(invoices);
-      console.log(obs, 'obs');
     });
 
     return obs;
-  }
+  }// deleteArInvoice()
 }
