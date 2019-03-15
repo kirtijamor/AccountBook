@@ -87,12 +87,12 @@ export class ArInvoicesComponent implements OnInit {
   //   // this line is to refresh view and detect changes for updating table view
   // }
 
-  // deleteArInvoice(arInvoice: ArInvoice) {
-  //   this.arInvoicesService.deleteArInvoice(arInvoice.invoiceNo)
-  //   .subscribe(data => {this.arInvoices.filter(u => u !== arInvoice);
-  //   });
-  //   this.getArInvoices();
-  // }
+  deleteArInvoice(arInvoice: ArInvoice) {
+    this.arInvoicesService.deleteArInovices(arInvoice)
+    .subscribe(data => {this.arInvoices.filter(u => u !== arInvoice);
+    });
+    this.getArInvoices();
+  }
 
   ngOnInit() {
     this.getArInvoices();
