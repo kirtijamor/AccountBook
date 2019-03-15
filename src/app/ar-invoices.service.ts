@@ -1,7 +1,7 @@
 import { ArInvoicesBackendService } from './ar-invoices-backend.service';
 import { ArInvoice } from './ar-invoices.model';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 // https://blog.angular-university.io/how-to-build-angular2-apps-using-rxjs-observable-data-services-pitfalls-to-avoid/
 @Injectable({
@@ -9,7 +9,7 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 })
 export class ArInvoicesService {
 
-  public arInvoices: ArInvoice[] = [];
+  // public arInvoices: ArInvoice[] = [];
   url = 'http://localhost:3200';
 
   // tslint:disable-next-line:variable-name
@@ -22,7 +22,7 @@ export class ArInvoicesService {
 
   loadArInvoices() {
     this.arInvoicesBackendService.getArInvoice().subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this._arInvoices.next(res);
     });
 
@@ -30,7 +30,24 @@ export class ArInvoicesService {
 
   getArInvoices() {
     return this._arInvoices.asObservable();
+  }// getArInvoices()
+
+  deleteArInovices(arInvoice: ArInvoice): Observable<ArInvoice[]> {
+    const obs: Observable<any> = this.arInvoicesBackendService.deleteArInvoice(arInvoice);
+
+    obs.subscribe(res => {
+      console.log(res , 'res');
+
+      const invoices: ArInvoice[] = this._arInvoices.getValue();
+      console.log(invoices , 'invoices');
+
+      const index = invoices.findIndex((deleted: ArInvoice) => deleted.id === arInvoice.id);
+      console.log(index, 'index');
+      invoices.splice(index);
+      this._arInvoices.next(invoices);
+      console.log(obs, 'obs');
+    });
+
+    return obs;
   }
-
-
 }

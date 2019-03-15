@@ -1,3 +1,4 @@
+import { share } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ArInvoice } from './ar-invoices.model';
@@ -12,7 +13,7 @@ export class ArInvoicesBackendService {
   constructor(private httpClient: HttpClient) {}
 
   getArInvoice(): Observable<ArInvoice[]> {
-    return this.httpClient.get<ArInvoice[]>(`${this.url}/arInvoices`);
+    return this.httpClient.get<ArInvoice[]>(`${this.url}/arInvoices`).pipe(share());
   }
 
   // Takes a parameter of ArInvoice type & sends it to server
@@ -22,8 +23,8 @@ export class ArInvoicesBackendService {
   // updateArInvoice(arInvoice: ArInvoice) {
   //   return this.httpClient.put(`${this.url}/arInvoices/${arInvoice.id}`, arInvoice);
   // }
-  deleteArInvoice(id: number) {
-    return this.httpClient.delete(`${this.url}/arInvoices/${id}`);
+  deleteArInvoice(arInvoice: ArInvoice) {
+    return this.httpClient.delete(`${this.url}/arInvoices/${arInvoice.id}`).pipe(share());
   }
 
 

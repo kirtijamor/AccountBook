@@ -76,7 +76,7 @@ export class ArInvoicesComponent implements OnInit {
   getArInvoices() {
     this.arInvoicesService.arInvoices$.subscribe((data: ArInvoice[]) => {
       this.arInvoices = data;
-      console.log(data);
+      console.log(data, 'data');
     });
 
   }
@@ -89,9 +89,10 @@ export class ArInvoicesComponent implements OnInit {
 
   deleteArInvoice(arInvoice: ArInvoice) {
     this.arInvoicesService.deleteArInovices(arInvoice)
-    .subscribe(data => {this.arInvoices.filter(u => u !== arInvoice);
+    .subscribe(data => {
+      this.arInvoices = data;
     });
-    this.getArInvoices();
+    // this.getArInvoices();
   }
 
   ngOnInit() {
