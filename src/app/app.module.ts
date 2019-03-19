@@ -31,6 +31,7 @@ import { NewApComponent } from './new-ap/new-ap.component';
 import { GenerateReceiptComponent } from './generate-receipt/generate-receipt.component';
 import { ArInvoicesService } from './ar-invoices.service';
 import { ApBillsService } from './ap-bills.service';
+import { ApBillsBackendService } from './ap-bills-backend.service';
 
 const appRoutes: Routes = [
   { path: 'user-admin', component: UserAdminComponent },
@@ -39,8 +40,7 @@ const appRoutes: Routes = [
   { path: 'payments', component: PaymentsComponent },
   { path: 'receipts', component: ReceiptsComponent },
   { path: 'payment-terms', component: PaymentTermsComponent },
-  { path: 'generate-receipt', component: GenerateReceiptComponent },
-  // {path: 'new-ap' , component: NewApComponent}
+  { path: 'generate-receipt', component: GenerateReceiptComponent }
 ];
 
 @NgModule({
@@ -84,6 +84,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
 // tslint:disable-next-line: deprecation
     HttpModule
     // PopupModule.forRoot()
@@ -92,7 +94,8 @@ const appRoutes: Routes = [
   providers: [
     ArInvoicesService,
     ApBillsService,
-    ArInvoicesBackendService// to make service available to all components
+    ArInvoicesBackendService,
+    ApBillsBackendService     // to make service available to all components
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,6 @@
 import { ArInvoices } from './ar-invoices.model';
 import { share } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -17,9 +17,12 @@ export class ArInvoicesBackendService {
   }
 
   // Takes a parameter of ArInvoice type & sends it to server
-  // createArInvoice(arInvoice: ArInvoice) {
-  //   return this.httpClient.post(`${this.url}/arInvoices`, arInvoice);
-  // }
+  createArInvoice(arInvoice: ArInvoices) {
+    // const headers = new HttpHeaders();
+    // headers.append('Content-Type' , 'application/json; charset=utf-8');
+    return this.httpClient.post<ArInvoices>(`${this.url}/arInvoices/`, arInvoice).pipe(share());
+  }
+
   // updateArInvoice(arInvoice: ArInvoice) {
   //   return this.httpClient.put(`${this.url}/arInvoices/${arInvoice.id}`, arInvoice);
   // }

@@ -1,43 +1,48 @@
 <h1 class="dialogTitle">Please enter the details</h1>
 
-<div mat-dialog-content>
-  &nbsp;
-  <div>
+<form (ngSubmit)="saveAndComplete()">
+  <div mat-dialog-content>
+    &nbsp;
+    <div>
+      <mat-form-field>
+        <input matInput type="number" placeholder="Invoice No." name="InvoiceNo." [(ngModel)]="arInvoice.invoiceNo" required>
+      </mat-form-field>
+    </div>
+
     <mat-form-field>
-      <input matInput type="number" placeholder="Invoice No." required>
+      <mat-select placeholder="Client" name="Client" [(ngModel)]="arInvoice.client" required>
+        <mat-option value="client1">Client1</mat-option>
+        <mat-option value="client2">Client2</mat-option>
+        <mat-option value="client3">Client3</mat-option>
+      </mat-select>
     </mat-form-field>
+
+    <div>
+      <mat-form-field id="custom-form1">
+        <input matInput placeholder="Amount" type="number" name="Amount" [(ngModel)]="arInvoice.amount" required>
+        <!-- <mat-hint align="start">Enter the amount in US Dollars</mat-hint> -->
+        <span matPrefix>$&nbsp;</span>
+        <!-- <span matSuffix>.00</span> -->
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" name="DueDate" placeholder="Due Date" (focus)="picker.open()"
+          [(ngModel)]="arInvoice.dueDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <!-- <p>NOTE: * fields are mandatory.</p> -->
+    <div mat-dialog-actions>
+      <button mat-button class="form-buttons" (click)="saveAsDraft()">Save as draft</button> &nbsp;
+      <button mat-raised-button type="submit" class="form-buttons">Save & Complete</button>
+    </div>
+
+    <div></div>
+
   </div>
 
-  <mat-form-field>
-    <mat-select placeholder="Client" required>
-      <mat-option value="client1">Client1</mat-option>
-      <mat-option value="client2">Client2</mat-option>
-      <mat-option value="client3">Client3</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <div>
-    <mat-form-field id="custom-form1">
-      <input matInput placeholder="Amount" type="number" required>
-      <!-- <mat-hint align="start">Enter the amount in US Dollars</mat-hint> -->
-      <span matPrefix>$&nbsp;</span>
-      <!-- <span matSuffix>.00</span> -->
-    </mat-form-field>
-  </div>
-
-  <div>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Due Date" (focus)="picker.open()">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
-
-  <!-- <p>NOTE: * fields are mandatory.</p> -->
-  <div mat-dialog-actions>
-    <button mat-button class="form-buttons" (click)="saveAsDraft()">Save as draft</button> &nbsp;
-    <button mat-raised-button class="form-buttons" (click)="saveAndComplete()">Save & Complete</button>
-  </div>
-
-  <div></div>
-</div>
+</form>

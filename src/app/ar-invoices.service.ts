@@ -45,4 +45,18 @@ export class ArInvoicesService {
 
     return obs;
   }// deleteArInvoice()
+
+  addArInvoice(arInvoice: ArInvoices): Observable<ArInvoices> {
+    const obs = this.arInvoicesBackendService.createArInvoice(arInvoice);
+
+    obs.subscribe(res => {
+      // console.log(this._arInvoices.getValue(), 'store data');
+      this._arInvoices.getValue().unshift(arInvoice);
+      console.log(this._arInvoices.getValue(), 'store data');
+      this._arInvoices.next(this._arInvoices.getValue());
+    });
+
+    return obs;
+  }
+
 }
