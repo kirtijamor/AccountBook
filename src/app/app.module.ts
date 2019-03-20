@@ -5,12 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { AppComponent } from './app.component';
-import { SideNavComponent } from './side-nav/side-nav.component';
+import { DatePipe } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
 import {
   MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
@@ -20,6 +17,8 @@ import {
 } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 
+import { AppComponent } from './app.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
 import { UserAdminComponent } from './user-admin/user-admin.component';
 import { ArInvoicesComponent } from './ar-invoices/ar-invoices.component';
 import { ApBillsComponent } from './ap-bills/ap-bills.component';
@@ -32,6 +31,7 @@ import { GenerateReceiptComponent } from './generate-receipt/generate-receipt.co
 import { ArInvoicesService } from './ar-invoices.service';
 import { ApBillsService } from './ap-bills.service';
 import { ApBillsBackendService } from './ap-bills-backend.service';
+
 
 const appRoutes: Routes = [
   { path: 'user-admin', component: UserAdminComponent },
@@ -95,7 +95,8 @@ const appRoutes: Routes = [
     ArInvoicesService,
     ApBillsService,
     ArInvoicesBackendService,
-    ApBillsBackendService     // to make service available to all components
+    ApBillsBackendService,
+    DatePipe    // to make service available to all components
   ],
   bootstrap: [AppComponent]
 })

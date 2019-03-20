@@ -30,7 +30,7 @@ export class ApBillsComponent implements OnInit {
 
   displayedColumns: string[] = ['billNo', 'billDate', 'vendor', 'amount', 'dueDate', 'delete'];
   @ViewChild(MatSort) sort: MatSort;
-// tslint:disable-next-line: no-use-before-declare
+  // tslint:disable-next-line: no-use-before-declare
   dataSource = new ApBillsDataSource(this.apBillsService);
 
   openDialog(): void {

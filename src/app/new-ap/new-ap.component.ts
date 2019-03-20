@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { ApBillsService } from './../ap-bills.service';
 import { ApBills } from './../ap-bills.model';
 import { VendorDialogData } from './../ap-bills/ap-bills.component';
@@ -11,11 +12,14 @@ import { Component, OnInit, Inject } from '@angular/core';
 })
 export class NewApComponent implements OnInit {
   id = 11;
-  constructor(public apBillsService: ApBillsService,
+  constructor(
+    public apBillsService: ApBillsService,
     // tslint:disable-next-line:align
     public dialogRef: MatDialogRef<NewApComponent>,
     // tslint:disable-next-line:align
-    @Inject(MAT_DIALOG_DATA) public data: VendorDialogData) { }
+    @Inject(MAT_DIALOG_DATA) public data: VendorDialogData,
+    public datePipe: DatePipe
+  ) {}
 
   apBill = new ApBills();
 
@@ -28,12 +32,13 @@ export class NewApComponent implements OnInit {
     console.log('SAVED SUCCESSFULLY!');
 
     this.apBill.id = this.id;
-    this.id++;
+    this.id += 1;
+    this.apBill.dueDate = this.datePipe.transform(this.apBill.dueDate, 'dd/mm/yyyy');
+    this.apBill.billDate = this.datePipe.transform(this.apBill.billDate, 'dd/mm/yyyy');
     this.apBillsService.addApBill(this.apBill);
 
     this.dialogRef.close();
   }
 
-  ngOnInit() { }
-
+  ngOnInit() {}
 }

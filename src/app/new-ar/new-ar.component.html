@@ -5,7 +5,17 @@
     &nbsp;
     <div>
       <mat-form-field>
-        <input matInput type="number" placeholder="Invoice No." name="InvoiceNo." [(ngModel)]="arInvoice.invoiceNo" required>
+        <input matInput type="number" placeholder="Invoice No." name="InvoiceNo." [(ngModel)]="arInvoice.invoiceNo"
+          required>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" name="InvoiceDate" placeholder="Invoice Date" (focus)="picker.open()"
+          [(ngModel)]="arInvoice.invoiceDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
 
@@ -28,10 +38,17 @@
 
     <div>
       <mat-form-field>
-        <input matInput [matDatepicker]="picker" name="DueDate" placeholder="Due Date" (focus)="picker.open()"
+        <input matInput [matDatepicker]="picker2" name="DueDate" placeholder="Due Date" (focus)="picker2.open()"
           [(ngModel)]="arInvoice.dueDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Billing Site" name="billTo" [(ngModel)]="arInvoice.billTo"
+          required>
       </mat-form-field>
     </div>
 
