@@ -3,7 +3,6 @@ import { ApBills } from './ap-bills.model';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +18,6 @@ export class ApBillsService {
 
   loadApBills() {
     this.apBillsBackendService.getApBills().subscribe(res => {
-      // console.log(res);
       this._apBills.next(res);
     });
 
@@ -28,19 +26,25 @@ export class ApBillsService {
 
   getApBills(): Observable<ApBills[]> {
     return this._apBills.asObservable();
-  }
+  }// getApBills()
 
-  deleteApBill(apBill: ApBills): Observable<ApBills[]> {
-    const obs: Observable<any> = this.apBillsBackendService.deleteApBill(apBill);
-
+  addApBill(apBill: ApBills): Observable<ApBills> {
+    const obs: Observable<ApBills> = this.apBillsBackendService.createApBill(apBill);
     obs.subscribe(res => {
-      const bills: ApBills[] = this._apBills.getValue();
-      const index = bills.findIndex((deleted: ApBills) => deleted.id === apBill.id );
-
-      bills.splice(index);
-      this._apBills.next(bills);
+      this.loadApBills();
+      this._apBills.next(this._apBills.getValue());
     });
 
     return obs;
-  }
+  }// addApBill()
+
+  deleteApBill(apBill: ApBills): Observable<ApBills[]> {
+    const obs: Observable<any> = this.apBillsBackendService.deleteApBill(apBill);
+    obs.subscribe(res => {
+      this.loadApBills();
+      this._apBills.next(this._apBills.getValue());
+    });
+
+    return obs;
+  }// deleteApBill()
 }

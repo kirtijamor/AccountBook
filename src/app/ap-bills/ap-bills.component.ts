@@ -13,7 +13,6 @@ export interface VendorDialogData {
   dueDate: string;
 }
 
-
 @Component({
   selector: 'app-ap-bills',
   templateUrl: './ap-bills.component.html',
@@ -27,18 +26,17 @@ export class ApBillsComponent implements OnInit {
   amount: number;
   dueDate: string;
 
-
-
   constructor(public vendorDialog: MatDialog, public apBillsService: ApBillsService) { }
 
   displayedColumns: string[] = ['billNo', 'billDate', 'vendor', 'amount', 'dueDate', 'delete'];
   @ViewChild(MatSort) sort: MatSort;
+// tslint:disable-next-line: no-use-before-declare
   dataSource = new ApBillsDataSource(this.apBillsService);
 
   openDialog(): void {
     const dialogRef = this.vendorDialog.open(NewApComponent, {
-      width: '350px',
-      height: '475px',
+      width: '400px',
+      height: '420px',
       data: { client: this.vendor, amount: this.amount, dueDate: this.dueDate },
       panelClass: 'custom-dialog-container'
     });
@@ -50,18 +48,18 @@ export class ApBillsComponent implements OnInit {
     });
   }// to close openDialog()
 
-  public getApBills() {
+  getApBills() {
     this.apBillsService.apBills$.subscribe((data: ApBills[]) => {
       this.apBills = data;
       console.log(data);
     });
-  }
+  }// getApBills()
 
   deleteApBill(apBill: ApBills) {
     this.apBillsService.deleteApBill(apBill).subscribe(data => {
       this.apBills = data;
     });
-  }
+  }// deleteApBill()
 
   ngOnInit() {
     this.getApBills();

@@ -12,35 +12,27 @@ import { FormControl } from '@angular/forms';
 })
 export class NewArComponent implements OnInit {
 
+  id = 6;
   constructor(public dialogRef: MatDialogRef<NewArComponent>,
     // tslint:disable-next-line:align
     @Inject(MAT_DIALOG_DATA) public data: CustomerDialogData, public arInvoicesService: ArInvoicesService) { }
 
   arInvoice = new ArInvoices();
-  arInvoices: ArInvoices[] = [];
 
   saveAsDraft() {
-    console.log('Draft!');
+    console.log('Saved as Draft!');
   }
 
   saveAndComplete() {
-    console.log('Saved!');
-    this.arInvoice.id = 11;
+    console.log('Saved complete Transaction!');
+
+    this.arInvoice.id = this.id;
+    this.id++;
     console.log(this.arInvoice);
+
     this.arInvoicesService.addArInvoice(this.arInvoice);
-    // this.getArInvoices();
-  }
+    this.dialogRef.close();
+  }// saveAndComplete()
 
-  // getArInvoices() {
-  //   this.arInvoicesService.arInvoices$.subscribe((data: ArInvoices[]) => {
-  //     this.arInvoices = data;
-  //     console.log(data, 'data in new ar');
-  //   });
-
-  // }// getArInvoices()
-
-
-  ngOnInit() {
-    // this.getArInvoices();
-  }
+  ngOnInit() {}
 }

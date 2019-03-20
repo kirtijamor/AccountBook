@@ -18,14 +18,13 @@ export class ArInvoicesBackendService {
 
   // Takes a parameter of ArInvoice type & sends it to server
   createArInvoice(arInvoice: ArInvoices) {
-    // const headers = new HttpHeaders();
-    // headers.append('Content-Type' , 'application/json; charset=utf-8');
     return this.httpClient.post<ArInvoices>(`${this.url}/arInvoices/`, arInvoice).pipe(share());
   }
 
   // updateArInvoice(arInvoice: ArInvoice) {
   //   return this.httpClient.put(`${this.url}/arInvoices/${arInvoice.id}`, arInvoice);
   // }
+
   deleteArInvoice(arInvoice: ArInvoices) {
     return this.httpClient.delete(`${this.url}/arInvoices/${arInvoice.id}`).pipe(share());
   }

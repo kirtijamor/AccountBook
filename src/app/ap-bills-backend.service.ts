@@ -19,4 +19,8 @@ export class ApBillsBackendService {
   deleteApBill(apBill: ApBills) {
     return this.httpClient.delete(`${this.url}/apBills/${apBill.id}`).pipe(share());
   }
+
+  createApBill(apBill: ApBills) {
+  return this.httpClient.post<ApBills>(`${this.url}/apBills/`, apBill).pipe(share());
+  }
 }

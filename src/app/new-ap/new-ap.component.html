@@ -1,50 +1,54 @@
 <h1 class="dialogTitle">Please enter the details</h1>
 
-<div mat-dialog-content>
-  &nbsp;
-  <div>
+<form (ngSubmit)="saveAndComplete()">
+  <div mat-dialog-content>
+    &nbsp;
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Bill No." type="number" [(ngModel)]="apBill.billNo" name="billNo" required>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" name="billDate" [(ngModel)]="apBill.billDate"
+          placeholder="Bill Date" (focus)="picker.open()">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
     <mat-form-field>
-      <input matInput placeholder="Bill No." type="number" required>
+      <mat-select placeholder="Vendor" name="vendor" [(ngModel)]="apBill.vendor" required>
+        <mat-option value="vendor1">Vendor1</mat-option>
+        <mat-option value="vendor2">Vendor2</mat-option>
+        <mat-option value="vendor3">Vendor3</mat-option>
+      </mat-select>
     </mat-form-field>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Amount" type="number" name="amount" [(ngModel)]="apBill.amount" required>
+        <!-- <mat-hint align="start">Enter the amount in US Dollars</mat-hint> -->
+        <span matPrefix>$&nbsp;</span>
+        <!-- <span matSuffix>.00</span> -->
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker2" name="dueDate" placeholder="Due Date" [(ngModel)]="apBill.dueDate"
+          (focus)="picker2.open()">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button class="form-buttons" (click)="saveAsDraft()">Save as draft</button> &nbsp;
+      <button mat-raised-button type="submit" class="form-buttons">Save & Complete</button>
+    </div>
+
+    <div></div>
   </div>
-
-  <div>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker2" placeholder="Bill Date" (focus)="picker.open()">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
-  </div>
-
-  <mat-form-field>
-    <mat-select placeholder="Vendor" required>
-      <mat-option value="vendor1">Vendor1</mat-option>
-      <mat-option value="vendor2">Vendor2</mat-option>
-      <mat-option value="vendor3">Vendor3</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <div>
-    <mat-form-field>
-      <input matInput placeholder="Amount" type="number" required>
-      <!-- <mat-hint align="start">Enter the amount in US Dollars</mat-hint> -->
-      <span matPrefix>$&nbsp;</span>
-      <!-- <span matSuffix>.00</span> -->
-    </mat-form-field>
-  </div>
-
-  <div>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Due Date" (focus)="picker.open()">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
-
-  <div mat-dialog-actions>
-    <button mat-button class="form-buttons" (click)="saveAsDraft()">Save as draft</button> &nbsp;
-    <button mat-raised-button class="form-buttons" (click)="saveAndComplete()">Save & Complete</button>
-  </div>
-
-  <div></div>
-</div>
+</form>

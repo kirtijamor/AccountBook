@@ -36,11 +36,11 @@ export class ArInvoicesService {
     const obs: Observable<any> = this.arInvoicesBackendService.deleteArInvoice(arInvoice);
 
     obs.subscribe(res => {
-      const invoices: ArInvoices[] = this._arInvoices.getValue();
-      const index = invoices.findIndex((deleted: ArInvoices) => deleted.id === arInvoice.id);
-
-      invoices.splice(index);
-      this._arInvoices.next(invoices);
+      // const invoices: ArInvoices[] = this._arInvoices.getValue();
+      // const index = invoices.findIndex((deleted: ArInvoices) => deleted.id === arInvoice.id);
+      // invoices.splice(index);
+      this.loadArInvoices();
+      this._arInvoices.next(this._arInvoices.getValue());
     });
 
     return obs;
@@ -50,9 +50,7 @@ export class ArInvoicesService {
     const obs = this.arInvoicesBackendService.createArInvoice(arInvoice);
 
     obs.subscribe(res => {
-      // console.log(this._arInvoices.getValue(), 'store data');
-      this._arInvoices.getValue().unshift(arInvoice);
-      console.log(this._arInvoices.getValue(), 'store data');
+      this.loadArInvoices();
       this._arInvoices.next(this._arInvoices.getValue());
     });
 

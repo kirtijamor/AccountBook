@@ -1,5 +1,7 @@
+import { ApBillsService } from './../ap-bills.service';
+import { ApBills } from './../ap-bills.model';
 import { VendorDialogData } from './../ap-bills/ap-bills.component';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
@@ -8,11 +10,15 @@ import { Component, OnInit, Inject } from '@angular/core';
   styleUrls: ['./new-ap.component.css']
 })
 export class NewApComponent implements OnInit {
+  id = 11;
+  constructor(public apBillsService: ApBillsService,
+    // tslint:disable-next-line:align
+    public dialogRef: MatDialogRef<NewApComponent>,
+    // tslint:disable-next-line:align
+    @Inject(MAT_DIALOG_DATA) public data: VendorDialogData) { }
 
-  constructor(public dialogRef: MatDialogRef<NewApComponent>, @Inject(MAT_DIALOG_DATA) public data: VendorDialogData) { }
+  apBill = new ApBills();
 
-  ngOnInit() {
-  }
   saveAsDraft() {
     console.log('SAVED AS DRAFT!');
     this.dialogRef.close();
@@ -20,6 +26,14 @@ export class NewApComponent implements OnInit {
 
   saveAndComplete() {
     console.log('SAVED SUCCESSFULLY!');
+
+    this.apBill.id = this.id;
+    this.id++;
+    this.apBillsService.addApBill(this.apBill);
+
     this.dialogRef.close();
   }
+
+  ngOnInit() { }
+
 }

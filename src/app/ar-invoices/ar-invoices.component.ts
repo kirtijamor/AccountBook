@@ -47,7 +47,7 @@ export class ArInvoicesComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.customerDialog.open(NewArComponent, {
       width: '350px',
-      height: '420px',
+      height: '475px',
       data: { client: this.client, amount: this.amount, dueDate: this.dueDate },
       panelClass: 'custom-dialog-container'
     });
@@ -80,11 +80,10 @@ export class ArInvoicesComponent implements OnInit {
   }// getArInvoices()
 
   deleteArInvoice(arInvoice: ArInvoices) {
-    this.arInvoicesService.deleteArInovices(arInvoice)
-    .subscribe(data => {
+    this.arInvoicesService.deleteArInovices(arInvoice).subscribe(data => {
       this.arInvoices = data;
     });
-  }
+  }// deleteApBill()
 
   ngOnInit() {
     this.getArInvoices();

@@ -1,4 +1,4 @@
-export interface ApBills {
+export class ApBills {
   id: number;
   billNo: number;
   billDate: string;
