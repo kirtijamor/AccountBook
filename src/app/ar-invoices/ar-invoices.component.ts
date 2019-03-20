@@ -1,17 +1,17 @@
-import { ArInvoices } from "./../ar-invoices.model";
-import { ArInvoicesService } from "./../ar-invoices.service";
+import { ArInvoices } from './../ar-invoices.model';
+import { ArInvoicesService } from './../ar-invoices.service';
 
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   MatTableDataSource,
   MatDialog,
   MatSort,
   MatPaginator
-} from "@angular/material";
-import { NewArComponent } from "../new-ar/new-ar.component";
-import { ViewEncapsulation } from "@angular/core";
-import { Observable } from "rxjs";
-import { DataSource } from "@angular/cdk/collections";
+} from '@angular/material';
+import { NewArComponent } from '../new-ar/new-ar.component';
+import { ViewEncapsulation } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DataSource } from '@angular/cdk/collections';
 
 export interface CustomerDialogData {
   client: string;
@@ -20,9 +20,9 @@ export interface CustomerDialogData {
 }
 
 @Component({
-  selector: "app-ar-invoices",
-  templateUrl: "./ar-invoices.component.html",
-  styleUrls: ["./ar-invoices.component.css"],
+  selector: 'app-ar-invoices',
+  templateUrl: './ar-invoices.component.html',
+  styleUrls: ['./ar-invoices.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class ArInvoicesComponent implements OnInit {
@@ -37,13 +37,13 @@ export class ArInvoicesComponent implements OnInit {
   dueDate: string;
 
   displayedColumns = [
-    "invoiceNo",
-    "invoiceDate",
-    "client",
-    "amount",
-    "billTo",
-    "dueDate",
-    "delete"
+    'invoiceNo',
+    'invoiceDate',
+    'client',
+    'amount',
+    'billTo',
+    'dueDate',
+    'delete'
   ];
   // tslint:disable-next-line: no-use-before-declare
   dataSource: any = new ArInvoicesDataSource(this.arInvoicesService);
@@ -52,7 +52,7 @@ export class ArInvoicesComponent implements OnInit {
   // @ViewChild(MatPaginator) paginator: MatPaginator;
 
   addRecord() {
-    console.log("add record works!");
+    console.log('add record works!');
   }
   getInvoice(row) {
     console.log(row);
@@ -60,14 +60,14 @@ export class ArInvoicesComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.customerDialog.open(NewArComponent, {
-      width: "350px",
-      height: "475px",
+      width: '350px',
+      height: '475px',
       data: { client: this.client, amount: this.amount, dueDate: this.dueDate },
-      panelClass: "custom-dialog-container"
+      panelClass: 'custom-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log("The transaction has been recorded!");
+      console.log('The transaction has been recorded!');
       this.client = result;
     });
   } // openDialog()
@@ -88,7 +88,7 @@ export class ArInvoicesComponent implements OnInit {
   getArInvoices() {
     this.arInvoicesService.arInvoices$.subscribe((data: ArInvoices[]) => {
       this.arInvoices = data;
-      console.log(data, "data");
+      console.log(data, 'data');
     });
   } // getArInvoices()
 
