@@ -31,6 +31,10 @@ import { GenerateReceiptComponent } from './generate-receipt/generate-receipt.co
 import { ArInvoicesService } from './ar-invoices.service';
 import { ApBillsService } from './ap-bills.service';
 import { ApBillsBackendService } from './ap-bills-backend.service';
+import { BanksComponent } from './banks/banks.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { CustomersComponent } from './customers/customers.component';
+import { VendorsComponent } from './vendors/vendors.component';
 
 
 const appRoutes: Routes = [
@@ -40,7 +44,11 @@ const appRoutes: Routes = [
   { path: 'payments', component: PaymentsComponent },
   { path: 'receipts', component: ReceiptsComponent },
   { path: 'payment-terms', component: PaymentTermsComponent },
-  { path: 'generate-receipt', component: GenerateReceiptComponent }
+  { path: 'generate-receipt', component: GenerateReceiptComponent },
+  { path: 'banks', component: BanksComponent },
+  { path: 'employees', component: EmployeesComponent },
+  { path: 'customers', component: CustomersComponent },
+  { path: 'vendors', component: VendorsComponent }
 ];
 
 @NgModule({
@@ -55,7 +63,11 @@ const appRoutes: Routes = [
     PaymentTermsComponent,
     NewArComponent,
     NewApComponent,
-    GenerateReceiptComponent
+    GenerateReceiptComponent,
+    BanksComponent,
+    EmployeesComponent,
+    CustomersComponent,
+    VendorsComponent
   ],
   imports: [
     AppRoutingModule,
