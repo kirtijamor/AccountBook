@@ -28,7 +28,10 @@ export class BanksComponent implements OnInit {
   }// getBanks()
 
   deleteBank(bank: Banks) {
-    console.log(bank);
+    // console.log(bank);
+    this.banksService.deleteBank(bank).subscribe(data => {
+      this.banks = data;
+    });
   }
 
   ngOnInit() {

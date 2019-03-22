@@ -8,17 +8,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ArInvoicesBackendService {
-  url = 'http://localhost:3200';
+  url = 'http://localhost:3200/arInvoices';
 
   constructor(private httpClient: HttpClient) {}
 
   getArInvoices(): Observable<ArInvoices[]> {
-    return this.httpClient.get<ArInvoices[]>(`${this.url}/arInvoices`).pipe(share());
+    return this.httpClient.get<ArInvoices[]>(this.url).pipe(share());
   }
 
   // Takes a parameter of ArInvoice type & sends it to server
   createArInvoice(arInvoice: ArInvoices) {
-    return this.httpClient.post<ArInvoices>(`${this.url}/arInvoices/`, arInvoice).pipe(share());
+    return this.httpClient.post<ArInvoices>(`${this.url}/`, arInvoice).pipe(share());
   }
 
   // updateArInvoice(arInvoice: ArInvoice) {
@@ -26,7 +26,7 @@ export class ArInvoicesBackendService {
   // }
 
   deleteArInvoice(arInvoice: ArInvoices) {
-    return this.httpClient.delete(`${this.url}/arInvoices/${arInvoice.id}`).pipe(share());
+    return this.httpClient.delete(`${this.url}/${arInvoice.id}`).pipe(share());
   }
 
 

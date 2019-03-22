@@ -1,0 +1,34 @@
+{
+  "banks": [
+    {
+      "id": 1,
+      "bankName": "ICICI Bank",
+      "branch": "Mulund"
+    },
+    {
+      "id": 2,
+      "bankName": "State Bank of India",
+      "branch": "Mulund"
+    },
+    {
+      "id": 3,
+      "bankName": "ICICI Bank",
+      "branch": "Thane"
+    },
+    {
+      "id": 4,
+      "bankName": "State Bank of India",
+      "branch": "CharniRoad"
+    },
+    {
+      "id": 5,
+      "bankName": "HDFC Bank",
+      "branch": "Mulund"
+    },
+    {
+      "id": 6,
+      "bankName": "Bank of Baroda",
+      "branch": "Mulund"
+    }
+  ]
+}

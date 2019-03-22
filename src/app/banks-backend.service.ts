@@ -18,6 +18,6 @@ export class BanksBackendService {
   }
 
   deleteBank(bank: Banks) {
-    return this.httpClient.delete<Banks>(this.url).pipe(share());
+    return this.httpClient.delete<Banks>(`${this.url}/${bank.id}`).pipe(share());
   }
 }

@@ -18,7 +18,7 @@ export class BanksService {
 
   loadBanks() {
     this.banksBackendService.getBanks().subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this._banks.next(res);
     });
   }// loadBanks()
