@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class BanksService {
 
-// tslint:disable-next-line: variable-name
+  // tslint:disable-next-line: variable-name
   private _banks: BehaviorSubject<Banks[]> = new BehaviorSubject([]);
   public readonly banks$: Observable<Banks[]> = this._banks.asObservable();
 
@@ -27,14 +27,21 @@ export class BanksService {
     return this._banks.asObservable();
   }// getBanks()
 
-  deleteBank(bank: Banks): Observable<Banks[]> {
-    const obs: Observable<any> = this.banksBackendService.deleteBank(bank);
-
+  addBank(bank: Banks): Observable<Banks> {
+    const obs = this.banksBackendService.createBank(bank);
     obs.subscribe(res => {
       this.loadBanks();
       this._banks.next(this._banks.getValue());
     });
-
     return obs;
-  }// deleteBanks()
+  }// addBank()
+
+  deleteBank(bank: Banks): Observable<Banks[]> {
+    const obs: Observable<any> = this.banksBackendService.deleteBank(bank);
+    obs.subscribe(res => {
+      this.loadBanks();
+      this._banks.next(this._banks.getValue());
+    });
+    return obs;
+  }// deleteBank()
 }

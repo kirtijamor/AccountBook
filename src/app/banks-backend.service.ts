@@ -17,6 +17,10 @@ export class BanksBackendService {
     return this.httpClient.get<Banks[]>(this.url).pipe(share());
   }
 
+  createBank(bank: Banks) {
+    return this.httpClient.post<Banks>(`${this.url}/`, bank).pipe(share());
+  }
+
   deleteBank(bank: Banks) {
     return this.httpClient.delete<Banks>(`${this.url}/${bank.id}`).pipe(share());
   }

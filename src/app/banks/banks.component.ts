@@ -1,20 +1,29 @@
+import { NewBankComponent } from './../new-bank/new-bank.component';
 import { Observable } from 'rxjs';
 import { BanksService } from './../banks.service';
 import { DataSource } from '@angular/cdk/collections';
 import { Banks } from './../banks';
 import { MatDialog } from '@angular/material';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+
+export interface BankDialogData {
+  bankName: string;
+  branch: string;
+}
 
 @Component({
   selector: 'app-banks',
   templateUrl: './banks.component.html',
   styleUrls: ['./banks.component.css']
 })
+
 export class BanksComponent implements OnInit {
 
   // To store all the banks from the api
-  public banks: Banks[] = [];
-  constructor(public banksService: BanksService) { }
+  banks: Banks[] = [];
+  bankName: string;
+  branch: string;
+  constructor(public banksService: BanksService, public bankDialog: MatDialog) { }
 
   displayedColumns = ['id', 'bankName', 'branch', 'delete'];
 // tslint:disable-next-line: no-use-before-declare
@@ -33,6 +42,19 @@ export class BanksComponent implements OnInit {
       this.banks = data;
     });
   }
+  openDialog(): void {
+    const dialogRef = this.bankDialog.open(NewBankComponent, {
+      width: '350px',
+      height: '400px',
+      data: {branch: this.branch, bankName: this.bankName},
+      panelClass: 'custom-dialog-container'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The bank has been added!');
+      // this.client = result;
+    });
+  } // openDialog()
 
   ngOnInit() {
     this.getBanks();

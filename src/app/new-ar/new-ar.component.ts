@@ -3,8 +3,8 @@ import { ArInvoicesService } from './../ar-invoices.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatInputModule } from '@angular/material';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CustomerDialogData } from '../ar-invoices/ar-invoices.component';
-// import { FormControl } from '@angular/forms';
 import {DatePipe} from '@angular/common';
+
 @Component({
   selector: 'app-new-ar',
   templateUrl: './new-ar.component.html',
@@ -32,6 +32,7 @@ export class NewArComponent implements OnInit {
     this.id += 1;
     this.arInvoice.invoiceDate = this.datePipe.transform(this.arInvoice.invoiceDate, 'dd/MM/yyyy');
     this.arInvoice.dueDate = this.datePipe.transform(this.arInvoice.dueDate, 'dd/MM/yyyy');
+
     console.log(this.arInvoice);
 
     this.arInvoicesService.addArInvoice(this.arInvoice);

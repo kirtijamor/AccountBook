@@ -1,3 +1,5 @@
+import { BanksService } from './banks.service';
+import { BanksBackendService } from './banks-backend.service';
 import { ArInvoicesBackendService } from './ar-invoices-backend.service';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -37,6 +39,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { CustomerQuickAddComponent } from './customer-quick-add/customer-quick-add.component';
 import { VendorQuickAddComponent } from './vendor-quick-add/vendor-quick-add.component';
+import { NewBankComponent } from './new-bank/new-bank.component';
 
 
 const appRoutes: Routes = [
@@ -71,7 +74,8 @@ const appRoutes: Routes = [
     CustomersComponent,
     VendorsComponent,
     CustomerQuickAddComponent,
-    VendorQuickAddComponent
+    VendorQuickAddComponent,
+    NewBankComponent
   ],
   imports: [
     AppRoutingModule,
@@ -106,12 +110,14 @@ const appRoutes: Routes = [
     HttpModule
     // PopupModule.forRoot()
   ],
-  entryComponents: [NewArComponent, NewApComponent],
+  entryComponents: [NewArComponent, NewApComponent, NewBankComponent],
   providers: [
     ArInvoicesService,
     ApBillsService,
     ArInvoicesBackendService,
     ApBillsBackendService,
+    BanksBackendService,
+    BanksService,
     DatePipe    // to make service available to all components
   ],
   bootstrap: [AppComponent]
