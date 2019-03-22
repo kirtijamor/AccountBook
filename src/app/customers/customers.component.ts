@@ -1,3 +1,4 @@
+import { DataSource } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class CustomersComponent implements OnInit {
 
   constructor() { }
-
+  // dataSource = new CustomersDataSource(this.dataSource);
   ngOnInit() {
   }
 

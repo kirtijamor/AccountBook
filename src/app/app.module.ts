@@ -35,6 +35,8 @@ import { BanksComponent } from './banks/banks.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { CustomersComponent } from './customers/customers.component';
 import { VendorsComponent } from './vendors/vendors.component';
+import { CustomerQuickAddComponent } from './customer-quick-add/customer-quick-add.component';
+import { VendorQuickAddComponent } from './vendor-quick-add/vendor-quick-add.component';
 
 
 const appRoutes: Routes = [
@@ -67,7 +69,9 @@ const appRoutes: Routes = [
     BanksComponent,
     EmployeesComponent,
     CustomersComponent,
-    VendorsComponent
+    VendorsComponent,
+    CustomerQuickAddComponent,
+    VendorQuickAddComponent
   ],
   imports: [
     AppRoutingModule,

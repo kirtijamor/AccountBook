@@ -26,15 +26,16 @@ export interface CustomerDialogData {
   encapsulation: ViewEncapsulation.None
 })
 export class ArInvoicesComponent implements OnInit {
-  constructor(
-    public customerDialog: MatDialog,
-    private arInvoicesService: ArInvoicesService
-  ) {}
 
   arInvoices: ArInvoices[];
   client: string;
   amount: number;
   dueDate: string;
+
+  constructor(
+    public customerDialog: MatDialog,
+    private arInvoicesService: ArInvoicesService
+  ) {}
 
   displayedColumns = [
     'invoiceNo',
@@ -93,7 +94,7 @@ export class ArInvoicesComponent implements OnInit {
   } // getArInvoices()
 
   deleteArInvoice(arInvoice: ArInvoices) {
-    this.arInvoicesService.deleteArInovices(arInvoice).subscribe(data => {
+    this.arInvoicesService.deleteArInovice(arInvoice).subscribe(data => {
       this.arInvoices = data;
     });
   } // deleteApBill()

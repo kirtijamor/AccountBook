@@ -1,3 +1,17 @@
-<p>
-  customers works!
-</p>
+<div class="div_header">
+  <span class="page-heading">CUSTOMERS</span>
+  <p class="btn-options">
+    <!-- <button mat-raised-button (click)="openDialog()">New Transaction</button> -->
+    &nbsp;
+    <button mat-raised-button [matMenuTriggerFor]="menu">Actions</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>See Payments</button>
+      <button mat-menu-item>Make Payments</button>
+    </mat-menu>
+  </p>
+</div>
+
+<div>
+  <div></div>
+</div>
+

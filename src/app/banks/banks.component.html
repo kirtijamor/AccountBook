@@ -1,3 +1,44 @@
-<p>
-  banks works!
-</p>
+<div class="div_header">
+  <span class="page-heading">BANKS</span>
+  <p class="btn-options">
+    <!-- <button mat-raised-button (click)="openDialog()">New Transaction</button> -->
+    &nbsp;
+    <button mat-raised-button [matMenuTriggerFor]="menu">Actions</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>See Payments</button>
+      <button mat-menu-item>Make Payments</button>
+    </mat-menu>
+  </p>
+</div>
+
+<mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--ID Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let banks"> {{banks.id}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="bankName">
+    <mat-header-cell *matHeaderCellDef> Bank </mat-header-cell>
+    <mat-cell *matCellDef="let banks"> {{banks.bankName}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="branch">
+    <mat-header-cell *matHeaderCellDef> Branch </mat-header-cell>
+    <mat-cell *matCellDef="let banks"> {{banks.branch}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let banks">
+      <button mat-icon-button (click)="deleteBank(banks)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns ; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>>
+
+</mat-table>

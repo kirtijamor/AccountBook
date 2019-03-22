@@ -32,7 +32,7 @@ export class ArInvoicesService {
     return this._arInvoices.asObservable();
   }// getArInvoices()
 
-  deleteArInovices(arInvoice: ArInvoices): Observable<ArInvoices[]> {
+  deleteArInovice(arInvoice: ArInvoices): Observable<ArInvoices[]> {
     const obs: Observable<any> = this.arInvoicesBackendService.deleteArInvoice(arInvoice);
 
     obs.subscribe(res => {

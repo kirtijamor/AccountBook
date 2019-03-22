@@ -1,6 +1,6 @@
 import { ArInvoices } from './ar-invoices.model';
 import { share } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
