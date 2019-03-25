@@ -1,7 +1,7 @@
 <div class="div_header">
   <span class="page-heading">CUSTOMERS</span>
   <p class="btn-options">
-    <!-- <button mat-raised-button (click)="openDialog()">New Transaction</button> -->
+    <button mat-raised-button (click)="openDialog()">Add Customer</button>
     &nbsp;
     <button mat-raised-button [matMenuTriggerFor]="menu">Actions</button>
     <mat-menu #menu="matMenu">
@@ -11,7 +11,59 @@
   </p>
 </div>
 
-<div>
-  <div></div>
-</div>
+<mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
 
+  <!--ID Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let customers"> {{customers.id}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="customerName">
+    <mat-header-cell *matHeaderCellDef> Client </mat-header-cell>
+    <mat-cell *matCellDef="let customers"> {{customers.customerName}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="shipTo">
+    <mat-header-cell *matHeaderCellDef> Ship To</mat-header-cell>
+    <mat-cell *matCellDef="let customers"> {{customers.shipTo}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="shipToContact">
+    <mat-header-cell *matHeaderCellDef> Shipping Contact </mat-header-cell>
+    <mat-cell *matCellDef="let customers"> {{customers.shipToContact}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="billTo">
+    <mat-header-cell *matHeaderCellDef> Bill To </mat-header-cell>
+    <mat-cell *matCellDef="let customers"> {{customers.billTo}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="billToContact">
+    <mat-header-cell *matHeaderCellDef> Billing Contact </mat-header-cell>
+    <mat-cell *matCellDef="let customers"> {{customers.billToContact}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="siteType">
+    <mat-header-cell *matHeaderCellDef> Site Type </mat-header-cell>
+    <mat-cell *matCellDef="let customers"> {{customers.siteType}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="addressCount">
+    <mat-header-cell *matHeaderCellDef> Address Count </mat-header-cell>
+    <mat-cell *matCellDef="let customers"> {{customers.addressCount}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let customers">
+      <button mat-icon-button (click)="deleteCustomer(customers)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns ; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>>
+
+</mat-table>

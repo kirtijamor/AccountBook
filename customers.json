@@ -1,0 +1,54 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "customerName": "Deepak",
+      "shipTo": "Mumbai",
+      "shipToContact": "1234567890",
+      "billTo": "Mumbai  ",
+      "billToContact": "1234567890",
+      "siteType": "IT",
+      "addressCount": "03"
+    },
+    {
+      "id": 2,
+      "customerName": "Poonam",
+      "shipTo": "Hyderabad",
+      "shipToContact": "1234567890",
+      "billTo": "Mumbai",
+      "billToContact": "1234567890",
+      "siteType": "Accounts",
+      "addressCount": "05"
+    },
+    {
+      "id": 3,
+      "customerName": "Ishwar",
+      "shipTo": "Aurangabad",
+      "shipToContact": "1234567890",
+      "billTo": "Aurangabad",
+      "billToContact": "1234567890",
+      "siteType": "IT",
+      "addressCount": "02"
+    },
+    {
+      "id": 4,
+      "customerName": "Gaurang",
+      "shipTo": "Mumbai",
+      "shipToContact": "1234567890",
+      "billTo": "Mumbai",
+      "billToContact": "1234567890",
+      "siteType": "SAP",
+      "addressCount": "01"
+    },
+    {
+      "customerName": "Kewal Somaiya",
+      "shipTo": "Mumbai",
+      "shipToContact": "1234567890",
+      "billTo": "Mumbai",
+      "billToContact": "1234567890",
+      "siteType": "Construction",
+      "id": 5,
+      "addressCount":"02"
+    }
+  ]
+}

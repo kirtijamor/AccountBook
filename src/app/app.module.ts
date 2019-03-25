@@ -40,6 +40,7 @@ import { VendorsComponent } from './vendors/vendors.component';
 import { CustomerQuickAddComponent } from './customer-quick-add/customer-quick-add.component';
 import { VendorQuickAddComponent } from './vendor-quick-add/vendor-quick-add.component';
 import { NewBankComponent } from './new-bank/new-bank.component';
+import { NewCustomerComponent } from './new-customer/new-customer.component';
 
 
 const appRoutes: Routes = [
@@ -75,7 +76,8 @@ const appRoutes: Routes = [
     VendorsComponent,
     CustomerQuickAddComponent,
     VendorQuickAddComponent,
-    NewBankComponent
+    NewBankComponent,
+    NewCustomerComponent
   ],
   imports: [
     AppRoutingModule,
@@ -110,7 +112,7 @@ const appRoutes: Routes = [
     HttpModule
     // PopupModule.forRoot()
   ],
-  entryComponents: [NewArComponent, NewApComponent, NewBankComponent],
+  entryComponents: [NewArComponent, NewApComponent, NewBankComponent, NewCustomerComponent],
   providers: [
     ArInvoicesService,
     ApBillsService,
