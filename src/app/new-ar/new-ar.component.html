@@ -20,7 +20,7 @@
     </div>
 
     <mat-form-field>
-      <mat-select placeholder="Client" name="Client" [(ngModel)]="arInvoice.client" required>
+      <mat-select placeholder="Client" name="Client" [(ngModel)]="arInvoice.client" [(value)]="arInvoice.client" required>
         <mat-option value="client1">Client1</mat-option>
         <mat-option value="client2">Client2</mat-option>
         <mat-option value="client3">Client3</mat-option>
@@ -56,6 +56,7 @@
     <div mat-dialog-actions>
       <button mat-button class="form-buttons" (click)="saveAsDraft()">Save as draft</button> &nbsp;
       <button mat-raised-button type="submit" class="form-buttons">Save & Complete</button>
+      <!-- <button mat-button mat-dialog-close>Cancel</button> -->
     </div>
 
     <div></div>

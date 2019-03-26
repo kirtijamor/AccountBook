@@ -29,6 +29,7 @@
 </div> -->
 
 <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
   <!--InvoiceNo Column -->
   <ng-container matColumnDef="invoiceNo">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Invoice No. </mat-header-cell>
@@ -87,6 +88,15 @@
     <mat-cell *matCellDef="let arInvoices">
       <button mat-icon-button (click)="deleteArInvoice(arInvoices)">
         <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="update">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let arInvoices">
+      <button mat-icon-button (click)="openUpdateDialog(arInvoices)">
+        <mat-icon>create</mat-icon>
       </button>
     </mat-cell>
   </ng-container>

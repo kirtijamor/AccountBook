@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   MatTableDataSource,
   MatDialog,
+  MatDialogConfig,
   MatSort,
   MatPaginator
 } from '@angular/material';
@@ -26,11 +27,7 @@ export interface CustomerDialogData {
   encapsulation: ViewEncapsulation.None
 })
 export class ArInvoicesComponent implements OnInit {
-
   arInvoices: ArInvoices[];
-  client: string;
-  amount: number;
-  dueDate: string;
 
   constructor(
     public customerDialog: MatDialog,
@@ -44,7 +41,8 @@ export class ArInvoicesComponent implements OnInit {
     'amount',
     'billTo',
     'dueDate',
-    'delete'
+    'delete',
+    'update'
   ];
   // tslint:disable-next-line: no-use-before-declare
   dataSource: any = new ArInvoicesDataSource(this.arInvoicesService);
@@ -52,9 +50,6 @@ export class ArInvoicesComponent implements OnInit {
   // @ViewChild(MatSort) sort: MatSort;
   // @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  addRecord() {
-    console.log('add record works!');
-  }
   getInvoice(row) {
     console.log(row);
   }
@@ -63,28 +58,39 @@ export class ArInvoicesComponent implements OnInit {
     const dialogRef = this.customerDialog.open(NewArComponent, {
       width: '350px',
       height: '475px',
-      data: { client: this.client, amount: this.amount, dueDate: this.dueDate },
       panelClass: 'custom-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The transaction has been recorded!');
-      this.client = result;
     });
   } // openDialog()
 
-  // invoiceNoFilter(filterValue: string) {
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
-  // invoiceDateFilter(filterValue: string) {
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
-  // clientFilter(filterValue: string) {
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
-  // amountFilter(filterValue: string) {
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
+  openUpdateDialog(invoice: ArInvoices): void {
+    console.log(invoice);
+
+    const dialogRef = this.customerDialog.open(NewArComponent, {
+      width: '350px',
+      height: '475px',
+      data:
+        {
+          invoiceNo: invoice.invoiceNo,
+          invoiceDate: invoice.invoiceDate,
+          amount: invoice.amount,
+          client: invoice.client,
+          dueDate: invoice.dueDate,
+          billTo: invoice.billTo
+        }
+        ,
+      panelClass: 'custom-dialog-container'
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The transaction has been recorded!');
+    //   console.log(result, 'RESULT');
+    // });
+    // this.getArInvoices();
+  } // openUpdateDialog()
 
   getArInvoices() {
     this.arInvoicesService.arInvoices$.subscribe((data: ArInvoices[]) => {
@@ -102,6 +108,19 @@ export class ArInvoicesComponent implements OnInit {
   ngOnInit() {
     this.getArInvoices();
   }
+
+  // invoiceNoFilter(filterValue: string) {
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
+  // invoiceDateFilter(filterValue: string) {
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
+  // clientFilter(filterValue: string) {
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
+  // amountFilter(filterValue: string) {
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
 }
 
 export class ArInvoicesDataSource extends DataSource<any> {

@@ -5,8 +5,8 @@
       "invoiceNo": 1,
       "invoiceDate": "22/02/2019",
       "client": "Ritesh",
-      "amount": 10000,
-      "dueDate": "22/03/2019",
+      "amount": 10500,
+      "dueDate": "22/04/2019",
       "billTo": "Mumbai, India"
     },
     {
@@ -53,6 +53,15 @@
       "dueDate": "28/04/2019",
       "billTo": "Mumbai, India",
       "id": 6
+    },
+    {
+      "invoiceNo": 7,
+      "invoiceDate": "26-March-2019",
+      "client": "client1",
+      "amount": 9000,
+      "dueDate": "23-April-2019",
+      "billTo": "Prague",
+      "id": 7
     }
   ]
 }

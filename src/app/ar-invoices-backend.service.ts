@@ -21,9 +21,9 @@ export class ArInvoicesBackendService {
     return this.httpClient.post<ArInvoices>(`${this.url}/`, arInvoice).pipe(share());
   }
 
-  // updateArInvoice(arInvoice: ArInvoice) {
-  //   return this.httpClient.put(`${this.url}/arInvoices/${arInvoice.id}`, arInvoice);
-  // }
+  updateArInvoice(arInvoice: ArInvoices) {
+    return this.httpClient.put(`${this.url}/${arInvoice.id}`, arInvoice);
+  }
 
   deleteArInvoice(arInvoice: ArInvoices) {
     return this.httpClient.delete(`${this.url}/${arInvoice.id}`).pipe(share());

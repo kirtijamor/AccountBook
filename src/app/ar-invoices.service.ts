@@ -57,4 +57,15 @@ export class ArInvoicesService {
     return obs;
   }
 
+  updateArInvoice(arInvoice: ArInvoices): Observable<ArInvoices[]> {
+    const obs: Observable<any> = this.arInvoicesBackendService.updateArInvoice(arInvoice);
+
+    obs.subscribe(res => {
+      this.loadArInvoices();
+      this._arInvoices.next(this._arInvoices.getValue());
+    });
+
+    return obs;
+  }
+
 }
